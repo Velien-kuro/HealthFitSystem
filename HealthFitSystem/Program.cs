@@ -1,3 +1,8 @@
+using HealthFitSystem.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using UsersApp.Data;
+
 namespace HealthFitSystem
 {
     public class Program
@@ -10,6 +15,25 @@ namespace HealthFitSystem
             // Add services to the container.
             //Healthyfood
             builder.Services.AddControllersWithViews();
+            builder.Services.AddDbContext<AppDbContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
+
+            builder.Services.AddIdentity<Users, IdentityRole>(Options =>
+            {
+                Options.Password.RequireNonAlphanumeric = false;
+                Options.Password.RequireDigit = true;
+                Options.Password.RequiredLength = 8;
+                Options.Password.RequireLowercase = true;
+                Options.Password.RequireUppercase = true;
+                Options.Password.RequireNonAlphanumeric = false;
+                Options.User.RequireUniqueEmail = true;
+                Options.SignIn.RequireConfirmedAccount = false;
+                Options.SignIn.RequireConfirmedEmail = false;
+                Options.SignIn.RequireConfirmedPhoneNumber = false;
+
+            })
+                .AddEntityFrameworkStores<AppDbContext>()
+                .AddDefaultTokenProviders();
 
             var app = builder.Build();
 

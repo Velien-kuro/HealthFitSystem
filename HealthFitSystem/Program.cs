@@ -6,7 +6,9 @@ namespace HealthFitSystem
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            //Push on github
             // Add services to the container.
+            //Healthyfood
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();

@@ -12,6 +12,8 @@ namespace HealthFitSystem
             var builder = WebApplication.CreateBuilder(args);
 
             //Sieu cap vip pro
+
+            // aksnaksf
             builder.Services.AddControllersWithViews();
             builder.Services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));

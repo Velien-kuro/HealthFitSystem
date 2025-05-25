@@ -12,7 +12,7 @@ namespace HealthFitSystem
             var builder = WebApplication.CreateBuilder(args);
 
             //Sieu cap vip pro
-             // abcxyz
+          
 
             
             builder.Services.AddControllersWithViews();
